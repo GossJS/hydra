@@ -23,7 +23,7 @@
     const body = 'img=' + encodeURIComponent(document.querySelector('img').src);  
        
        const headers = {"Content-Type" : "application/x-www-form-urlencoded"};
-      fetch('http://localhost:3000/v1/imagini/' + Math.random() + '.png?' + document.querySelector('select').value + '=yes', { method: 'POST', headers, body})
+      fetch('http://localhost:3000/v2/imagini/' + Math.random() + '.png?' + document.querySelector('select').value + '=yes', { method: 'POST', headers, body})
       .then(x => x.arrayBuffer())
       .then(buffer => {
          
