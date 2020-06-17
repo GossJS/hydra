@@ -1,6 +1,10 @@
 # imagini-service
 
-Image thumbnail and manipulation
+Микросервис преобразования небольших картинок
+
+https://kodaktor.ru/unsafe_hydra – клиентский код для подключения к этому микросервису на локалхосте
+
+---
 
 ## Pre-installation
 
