@@ -6,6 +6,10 @@ https://kodaktor.ru/unsafe_hydra – клиентский код для подк
 
 ---
 
+см. также https://github.com/GossJS/lambda – аналог с помощью AWS Lambda
+
+---
+
 ## Pre-installation
 
 It's recommended that [NVM](https://github.com/creationix/nvm) be used to manage NodeJS versions.
