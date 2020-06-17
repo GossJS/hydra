@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Флоппинг или флиппинг картинки</title><meta charset="utf-8">
+   <style>.r {border-radius: 50%; height: 28px; width: 28px; zoom: 150%}
+     #pic, img  {display: none}
+   </style>
+ </head>
+ <body> 
+      <button id="b" class="r" title="Приложить файл">📎</button> Выберите файл с картинкой
+   <form>
+        <input type="file" required name="pic" id="pic" onchange="getBase64()"> 
+        <input type="hidden" name="b64I" value="">
+        <img src="" height="200" alt="Image preview..." >
+        <input type="button"  value="✈️" class="r"   title="Отправить фетчем" onclick="doSend()">
+       </form>
+       <hr>
+   <select id="op"><option value="flop">flop</option><option value="flip">flip</option></select>
+   <script src="/j/dblttl"></script>
+   <script>
+    function doSend() {
+      //const body = 'img=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAIAAACwp%2BnIAAABQElEQVRIic3VTUtCQRQGYP9jgusyS42gcKF1P5yuPyCINv6ASA31mn24qURJ8UYEFS5UClJXLgUXieEYl9Jxzp1mnEB41w8HzuG8ru5XS3pcS4o%2Bdq23QV0aijkjfuwO7D73niSgP9yKfwdnUZTgFkWpHM5qWGn0X7lRiFsLKyc3mY%2FPBt%2F2QS6int5m5zkGCnFezN2BHIiC3L6aKJrOHAWFuPU9LVk020M2N4OCnKIlSxycjUKcT9FT5RwvZ6MUTtXPyvn2sCnA2SgherZD3wOKixNUPTokXJwNDaXvLzojQXqyqMp7lUpvaihbEaF%2FTwqkdUxfctHk8UO0X0dm9aozEkIZdBTlamza6aFAdCBqONPs1wfRQWScW9dU%2Bq9PGqK3DmL5hwJB89UJREsovnlaTpsStDR0mn6Ri1LzL%2BgYW330IyclfNAAAAAsdEVYdFNvZnR3YXJlAFlhbmRleC5EaXNrIChodHRwOi8vZGlzay55YW5kZXgucnUpXOoL5gAAAABJRU5ErkJggg%3D%3D'; 
+    const body = 'img=' + encodeURIComponent(document.querySelector('img').src);  
+       
+       const headers = {"Content-Type" : "application/x-www-form-urlencoded"};
+      fetch('http://localhost:3000/v1/imagini/' + Math.random() + '.png?' + document.querySelector('select').value + '=yes', { method: 'POST', headers, body})
+      .then(x => x.arrayBuffer())
+      .then(buffer => {
+         
+         const base64Flag = 'data:image/jpeg;base64,';
+         const imageStr = arrayBufferToBase64(buffer);
+
+         document.querySelector('img').src = base64Flag + imageStr;
+         document.querySelector('img').style.display = 'block';            
+       })
+      .catch(e => console.error(e));
+    } 
+     
+     
+    function arrayBufferToBase64(buffer) {
+       let binary = '';
+       const bytes = [].slice.call(new Uint8Array(buffer));
+       bytes.forEach(b => binary += String.fromCharCode(b));
+       return window.btoa(binary);
+    }
+                      
+    function getBase64() {
+      const reader = new FileReader();
+      const file = document.querySelector('[type=file]').files[0];
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+      reader.onload = () => {
+        const preview = document.querySelector('img');
+        document.querySelector('[type=hidden]').value = reader.result;
+        preview.src = reader.result;
+        preview.style.display = 'block';
+      };
+      reader.onerror =  error => console.log('Error: ', error);
+    }
+     
+    document
+    .querySelector('#b')
+    .addEventListener('click', e => document.querySelector('[type=file]').dispatchEvent(new MouseEvent('click')));
+       
+  
+    //*********
+  
+  </script>
+ <img src="" height="200" alt="Image preview..." >
+
+ </body>
+</html>
