@@ -22,6 +22,9 @@ config.init('./config/config.json')
       hydraExpress.registerRoutes({
         '/v1/imagini': require('./routes/imagini-v1-routes')
       });
+      hydraExpress.registerRoutes({
+        '/v2/imagini': require('./routes/imagini-v2-routes')
+      });
     });
   })
   .then(serviceInfo => console.log('serviceInfo', serviceInfo))
