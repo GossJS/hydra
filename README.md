@@ -8,10 +8,10 @@ https://kodaktor.ru/unsafe_hydra – клиентский код для подк
 
 ## Установка после клонирования репозитория в текущую папку
 
-```javascript
-$ cd imagini-service
-$ nvm use
-$ npm install
+```shell
+$ git clone https://github.com/GossJS/hydra .
+$ sudo n 10.0.0
+$ npm i
 ```
 
 ## Запуск
