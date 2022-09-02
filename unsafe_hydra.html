@@ -8,6 +8,67 @@
  </head>
  <body> 
       <button id="b" class="r" title="Приложить файл">📎</button> Выберите файл с картинкой
+   <form id="form2" action="http://localhost:3000/v2/imagini"  method="POST" enctype="application/x-www-form-urlencoded">
+        <input type="file"  id="pic" onchange="getBase64()"> 
+        <br> <input type="hidden" name="img" value="">
+        <img src="" height="200"   >
+        <select name="op"><option value="flop">flop</option><option value="flip">flip</option></select><br><br>
+        <input type="submit" value="✈️" class="r" title="Отправить">
+       
+       </form>
+       <hr>
+   
+   <script src="/j/dblttl"></script>
+   <script>
+   
+     function getBase64() {
+      const reader = new FileReader();
+      const file = document.querySelector('[type=file]').files[0];
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+      reader.onload = () => {
+        const preview = document.querySelector('img');
+        
+        document.querySelector('[type=hidden]').value = reader.result;
+        preview.src = reader.result;
+        preview.style.display = 'block';
+      };
+      reader.onerror =  error => console.log('Error: ', error);
+    }
+     
+     
+     document
+    .querySelector('#form2').action +=  `/${Math.random()}.png` ;
+
+    document
+    .querySelector('#b')
+    .addEventListener('click', e => document.querySelector('[type=file]').dispatchEvent(new MouseEvent('click')));
+   </script>
+
+ 
+
+ </body>
+</html>
+
+
+
+
+
+
+<!--
+
+
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Флоппинг или флиппинг картинки</title><meta charset="utf-8">
+   <style>.r {border-radius: 50%; height: 28px; width: 28px; zoom: 150%}
+     #pic, img  {display: none}
+   </style>
+ </head>
+ <body> 
+      <button id="b" class="r" title="Приложить файл">📎</button> Выберите файл с картинкой
    <form>
         <input type="file" required name="pic" id="pic" onchange="getBase64()"> 
         <input type="hidden" name="b64I" value="">
