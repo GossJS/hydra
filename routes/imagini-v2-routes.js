@@ -50,7 +50,7 @@ api.post("/:image", bodyparser.raw({
 
 	fd.on("close", () => {
 		// res.sendOk({ size: req.body.length });
-        res.redirect('/v1/imagini/' + req.image + '?' + req._parsedUrl.query)
+        res.redirect('/v1/imagini/' + req.image + '?' + req.body.op + '=1')
 	});
 });
 
@@ -91,6 +91,7 @@ api.get("/:image", (req, res) => {
 		if (sharpen > 0) image.sharpen(sharpen);
 		if (greyscale)   image.greyscale();
 
+		res.setHeader("Access-Control-Allow-Private-Network",  "true");
 		res.setHeader("Content-Type", "image/" + path.extname(req.image).substr(1));
 
 		image.pipe(res);
