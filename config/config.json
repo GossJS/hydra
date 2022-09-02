@@ -3,7 +3,7 @@
   "hydra": {
     "serviceName": "imagini-service",
     "serviceIP": "",
-    "servicePort": 0,
+    "servicePort": 3000,
     "serviceType": "imagini",
     "serviceDescription": "",
     "redis": {
